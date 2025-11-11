@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Journey</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="dashboard-page">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h1>📔 Journey</h1>
+            <button class="btn-icon" id="settingsBtn" title="Settings">⚙️</button>
+        </div>
+
+        <div class="sidebar-section">
+            <button class="btn btn-primary btn-full" id="newJournalBtn">+ New Journal</button>
+        </div>
+
+        <div class="sidebar-section">
+            <h3>Journals</h3>
+            <div id="journalsList" class="journals-list">
+                <div class="journal-item active">
+                    <span class="journal-icon">📓</span>
+                    <span class="journal-name">My First Journal</span>
+                </div>
+                <div class="journal-item">
+                    <span class="journal-icon">📔</span>
+                    <span class="journal-name">Travel Diary</span>
+                </div>
+                <div class="journal-item">
+                    <span class="journal-icon">📖</span>
+                    <span class="journal-name">Daily Thoughts</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar-footer">
+            <div class="user-info">
+                <div class="user-avatar">👤</div>
+                <div class="user-details">
+                    <span class="user-name">John Doe</span>
+                    <span class="user-email">john@example.com</span>
+                </div>
+            </div>
+            <button class="btn btn-secondary btn-full" id="logoutBtn">Logout</button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Journal Header -->
+        <header class="journal-header">
+            <div class="journal-info">
+                <h2 id="currentJournalTitle">My First Journal</h2>
+                <p id="entryCount">12 entries</p>
+            </div>
+            <div class="journal-actions">
+                <div class="view-mode-toggle">
+                    <button class="view-mode-btn active" data-view="grid" title="Grid View">⊞</button>
+                    <button class="view-mode-btn" data-view="list" title="List View">☰</button>
+                    <button class="view-mode-btn" data-view="calendar" title="Calendar View">📅</button>
+                </div>
+                <button class="btn btn-secondary" id="moodChartBtn" title="Mood Chart">📊</button>
+                <button class="btn btn-secondary" id="galleryBtn" title="Photo Gallery">🖼️</button>
+                <button class="btn btn-secondary" id="customizeBtn">🎨 Customize</button>
+                <button class="btn btn-primary" id="newEntryBtn">+ New Entry</button>
+            </div>
+        </header>
+
+        <!-- Entries List -->
+        <div id="entriesView" class="entries-view">
+            <div id="entriesList" class="entries-list">
+                <!-- Sample Entry Cards -->
+                <div class="entry-card">
+                    <div class="entry-card-image">
+                        <img src="https://via.placeholder.com/400x200?text=Journal+Entry" alt="Entry preview">
+                    </div>
+                    <div class="entry-card-header">
+                        <div class="entry-card-title">Today's Reflections</div>
+                        <div class="entry-card-mood">😊</div>
+                    </div>
+                    <div class="entry-card-preview">Today was a wonderful day. I spent time with my family and felt grateful for all the blessings in my life...</div>
+                    <div class="entry-card-meta">
+                        <span>Jan 15, 2025</span>
+                        <span class="entry-tags">#grateful #family</span>
+                    </div>
+                </div>
+
+                <div class="entry-card">
+                    <div class="entry-card-header">
+                        <div class="entry-card-title">Morning Thoughts</div>
+                        <div class="entry-card-mood">😌</div>
+                    </div>
+                    <div class="entry-card-preview">Started the day with meditation and a good cup of coffee. Feeling calm and ready for whatever comes...</div>
+                    <div class="entry-card-meta">
+                        <span>Jan 14, 2025</span>
+                        <span class="entry-tags">#morning #meditation</span>
+                    </div>
+                </div>
+
+                <div class="entry-card">
+                    <div class="entry-card-image">
+                        <img src="https://via.placeholder.com/400x200?text=Beautiful+Memory" alt="Entry preview">
+                    </div>
+                    <div class="entry-card-header">
+                        <div class="entry-card-title">Weekend Adventure</div>
+                        <div class="entry-card-mood">🤩</div>
+                    </div>
+                    <div class="entry-card-preview">Went on an amazing hiking trip this weekend. The views were breathtaking and I feel so energized...</div>
+                    <div class="entry-card-meta">
+                        <span>Jan 12, 2025</span>
+                        <span class="entry-tags">#adventure #nature</span>
+                    </div>
+                </div>
+
+                <div class="entry-card">
+                    <div class="entry-card-header">
+                        <div class="entry-card-title">Learning Day</div>
+                        <div class="entry-card-mood">🤔</div>
+                    </div>
+                    <div class="entry-card-preview">Spent the day learning new skills and working on personal development. Growth is important...</div>
+                    <div class="entry-card-meta">
+                        <span>Jan 10, 2025</span>
+                        <span class="entry-tags">#learning #growth</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Calendar View (Hidden by default) -->
+            <div id="calendarView" class="calendar-view" style="display: none;"></div>
+
+            <!-- Mood Chart View (Hidden by default) -->
+            <div id="moodChartView" class="mood-chart-view" style="display: none;">
+                <h3>30-Day Mood Tracker</h3>
+                <div id="moodChart" class="mood-chart"></div>
+            </div>
+
+            <!-- Gallery View (Hidden by default) -->
+            <div id="galleryView" class="gallery-view" style="display: none;">
+                <h3>Photo Gallery</h3>
+                <div id="galleryGrid" class="gallery-grid"></div>
+            </div>
+        </div>
+
+        <!-- Entry Editor (Hidden initially) -->
+        <div id="entryEditor" class="entry-editor" style="display: none;">
+            <div class="editor-header">
+                <input type="text" id="entryTitle" class="entry-title-input" placeholder="Entry Title">
+                <div class="editor-actions">
+                    <button class="btn-icon" id="emojiBtn" title="Add Emoji">😊</button>
+                    <button class="btn-icon" id="voiceBtn" title="Record Voice">🎤</button>
+                    <button class="btn-icon" id="videoBtn" title="Record Video">📹</button>
+                    <button class="btn-icon" id="imageBtn" title="Add Image">🖼️</button>
+                    <button class="btn-icon" id="lockBtn" title="Lock Entry">🔒</button>
+                    <button class="btn btn-secondary" id="closeEditorBtn">Close</button>
+                    <button class="btn btn-primary" id="saveEntryBtn">Save</button>
+                </div>
+            </div>
+
+            <div class="editor-toolbar">
+                <button class="toolbar-btn" data-command="bold">B</button>
+                <button class="toolbar-btn" data-command="italic">I</button>
+                <button class="toolbar-btn" data-command="underline">U</button>
+                <select class="toolbar-select" id="fontSelect">
+                    <option value="default">Default</option>
+                    <option value="serif">Serif</option>
+                    <option value="monospace">Monospace</option>
+                    <option value="cursive">Cursive</option>
+                </select>
+                <input type="color" id="textColorPicker" class="toolbar-color" value="#000000">
+            </div>
+
+            <div class="editor-content">
+                <div id="richEditor" contenteditable="true" class="rich-editor" placeholder="Start writing..."></div>
+            </div>
+
+            <div class="editor-footer">
+                <div class="editor-tags">
+                    <input type="text" id="tagsInput" placeholder="Add tags (comma separated)">
+                </div>
+                <div class="editor-mood">
+                    <label>Mood:</label>
+                    <select id="moodSelect">
+                        <option value="neutral">😐 Neutral</option>
+                        <option value="happy">😊 Happy</option>
+                        <option value="sad">😢 Sad</option>
+                        <option value="excited">🤩 Excited</option>
+                        <option value="calm">😌 Calm</option>
+                        <option value="anxious">😰 Anxious</option>
+                        <option value="grateful">🙏 Grateful</option>
+                    </select>
+                </div>
+                <div class="auto-save-status" id="autoSaveStatus">💾 Ready to save</div>
+            </div>
+
+            <!-- Media Preview -->
+            <div id="mediaPreview" class="media-preview"></div>
+        </div>
+    </main>
+
+    <!-- Customization Modal -->
+    <div id="customizeModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Customize Journal</h2>
+            <div class="customize-options">
+                <div class="option-group">
+                    <label>Cover</label>
+                    <select id="coverSelect">
+                        <option value="default">Default</option>
+                        <option value="leather">Leather</option>
+                        <option value="wood">Wood</option>
+                        <option value="marble">Marble</option>
+                        <option value="fabric">Fabric</option>
+                    </select>
+                </div>
+                <div class="option-group">
+                    <label>Background Color</label>
+                    <input type="color" id="bgColorPicker" value="#ffffff">
+                </div>
+                <div class="option-group">
+                    <label>Accent Color</label>
+                    <input type="color" id="accentColorPicker" value="#6366f1">
+                </div>
+            </div>
+            <button class="btn btn-primary" id="saveCustomizationBtn">Save Changes</button>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Settings</h2>
+            <div class="settings-content">
+                <div class="setting-group">
+                    <h3>Account</h3>
+                    <label>Email</label>
+                    <input type="email" value="john@example.com" readonly>
+                    <label>Username</label>
+                    <input type="text" value="John Doe">
+                </div>
+                <div class="setting-group">
+                    <h3>Preferences</h3>
+                    <label>Theme</label>
+                    <select>
+                        <option value="default">Default</option>
+                        <option value="dark">Dark</option>
+                        <option value="light">Light</option>
+                    </select>
+                </div>
+            </div>
+            <button class="btn btn-primary" id="saveSettingsBtn">Save Settings</button>
+        </div>
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+</html>
+
