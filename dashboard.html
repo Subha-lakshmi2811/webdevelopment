@@ -231,28 +231,123 @@
 
     <!-- Settings Modal -->
     <div id="settingsModal" class="modal">
-        <div class="modal-content">
+        <div class="modal-content settings-modal-content">
             <span class="close">&times;</span>
-            <h2>Settings</h2>
+            <h2>⚙️ Settings</h2>
             <div class="settings-content">
+                <!-- Account Section -->
                 <div class="setting-group">
-                    <h3>Account</h3>
-                    <label>Email</label>
-                    <input type="email" value="john@example.com" readonly>
-                    <label>Username</label>
-                    <input type="text" value="John Doe">
+                    <h3>👤 Account</h3>
+                    <div class="account-info">
+                        <div class="account-avatar">👤</div>
+                        <div class="account-details">
+                            <label>Username</label>
+                            <input type="text" id="settingsUsername" placeholder="Your username">
+                            <label>Email</label>
+                            <input type="email" id="settingsEmail" placeholder="your@email.com" readonly>
+                            <label>Member Since</label>
+                            <input type="text" id="memberSince" placeholder="Date" readonly>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- Theme Section -->
                 <div class="setting-group">
-                    <h3>Preferences</h3>
-                    <label>Theme</label>
-                    <select>
-                        <option value="default">Default</option>
-                        <option value="dark">Dark</option>
-                        <option value="light">Light</option>
-                    </select>
+                    <h3>🎨 Theme & Appearance</h3>
+                    <div class="theme-options">
+                        <label>Color Theme:</label>
+                        <div class="theme-buttons">
+                            <button class="theme-btn active" data-theme="default" title="Default Theme">
+                                <span class="theme-icon">⚪</span>
+                                <span>Default</span>
+                            </button>
+                            <button class="theme-btn" data-theme="dark" title="Dark Mode">
+                                <span class="theme-icon">🌙</span>
+                                <span>Dark</span>
+                            </button>
+                            <button class="theme-btn" data-theme="light" title="Light Mode">
+                                <span class="theme-icon">☀️</span>
+                                <span>Light</span>
+                            </button>
+                            <button class="theme-btn" data-theme="ocean" title="Ocean Theme">
+                                <span class="theme-icon">🌊</span>
+                                <span>Ocean</span>
+                            </button>
+                            <button class="theme-btn" data-theme="forest" title="Forest Theme">
+                                <span class="theme-icon">🌲</span>
+                                <span>Forest</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Privacy & Security -->
+                <div class="setting-group">
+                    <h3>🔒 Privacy & Security</h3>
+                    <div class="security-options">
+                        <label>
+                            <input type="checkbox" id="privateJournals">
+                            <span>Make journals private by default</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" id="autoLockEntries">
+                            <span>Auto-lock entries after 24 hours</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" id="enableNotifications">
+                            <span>Enable daily writing reminders</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Notifications -->
+                <div class="setting-group">
+                    <h3>🔔 Notifications</h3>
+                    <div class="notification-options">
+                        <label>
+                            <input type="checkbox" id="emailNotifications" checked>
+                            <span>Email notifications</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" id="dailyReminder" checked>
+                            <span>Daily reminder at 
+                            <input type="time" id="reminderTime" value="09:00" style="width: 100px;">
+                            </span>
+                        </label>
+                        <label>
+                            <input type="checkbox" id="weeklyDigest">
+                            <span>Weekly mood digest</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Data Management -->
+                <div class="setting-group">
+                    <h3>📊 Data Management</h3>
+                    <div class="data-actions">
+                        <button class="btn btn-secondary" id="exportDataBtn">📥 Export All Data (JSON)</button>
+                        <button class="btn btn-secondary" id="backupBtn">💾 Backup Entries</button>
+                        <button class="btn btn-secondary btn-danger" id="deleteAccountBtn">🗑️ Delete Account</button>
+                    </div>
+                </div>
+
+                <!-- About -->
+                <div class="setting-group">
+                    <h3>ℹ️ About</h3>
+                    <div class="about-info">
+                        <p><strong>Journey</strong> - Your Personal Journal App</p>
+                        <p>Version: 1.0.0</p>
+                        <p id="totalEntries">Total Entries: 0</p>
+                        <p id="totalJournals">Total Journals: 0</p>
+                        <p>Made with ❤️ for journaling</p>
+                    </div>
                 </div>
             </div>
-            <button class="btn btn-primary" id="saveSettingsBtn">Save Settings</button>
+
+            <div class="settings-footer">
+                <button class="btn btn-secondary" id="closeSettingsBtn">Cancel</button>
+                <button class="btn btn-primary" id="saveSettingsBtn">✓ Save Settings</button>
+            </div>
         </div>
     </div>
     
